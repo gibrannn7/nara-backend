@@ -1,28 +1,27 @@
-import os
+from typing import Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     # GCP Config
     GOOGLE_CLOUD_PROJECT: str
-    GOOGLE_APPLICATION_CREDENTIALS: str
+    GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None
     GCP_LOCATION: str
     GCP_QUEUE_NAME: str
 
-    # Mixpanel
+    # Mixpanel, OneSignal, Groq
     MIXPANEL_TOKEN: str
     MIXPANEL_API_SECRET: str
-
-    # OneSignal
     ONESIGNAL_APP_ID: str
     ONESIGNAL_API_KEY: str
-
-    # Groq
     GROQ_API_KEY: str
+    
+    BASE_WORKER_URL: Optional[str] = None
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 settings = Settings()
 
-# FIX: Menyuntikkan kredensial ke OS Environment agar terdeteksi oleh GCP SDK
-if settings.GOOGLE_APPLICATION_CREDENTIALS:
+# Hanya set env var jika filenya benar-benar ada (untuk lokal)
+import os
+if settings.GOOGLE_APPLICATION_CREDENTIALS and os.path.exists(settings.GOOGLE_APPLICATION_CREDENTIALS):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = settings.GOOGLE_APPLICATION_CREDENTIALS
