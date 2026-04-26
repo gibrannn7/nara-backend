@@ -2,20 +2,16 @@ from typing import Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    # GCP Config
     GOOGLE_CLOUD_PROJECT: str
     GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None
     GCP_LOCATION: str
     GCP_QUEUE_NAME: str
 
-    # Mixpanel, OneSignal, Groq
     MIXPANEL_TOKEN: str
     MIXPANEL_API_SECRET: str
     ONESIGNAL_APP_ID: str
     ONESIGNAL_API_KEY: str
     GROQ_API_KEY: str
-    
-    BASE_WORKER_URL: Optional[str] = None
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

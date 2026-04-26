@@ -44,7 +44,9 @@ jobs:
             --region ${{ env.REGION }} \
             --platform managed \
             --allow-unauthenticated \
+            --set-env-vars GOOGLE_CLOUD_PROJECT=${{ env.PROJECT_ID }} \
             --set-env-vars MIXPANEL_TOKEN=${{ secrets.MIXPANEL_TOKEN }} \
+            --set-env-vars MIXPANEL_API_SECRET=${{ secrets.MIXPANEL_API_SECRET }} \
             --set-env-vars ONESIGNAL_APP_ID=${{ secrets.ONESIGNAL_APP_ID }} \
             --set-env-vars ONESIGNAL_API_KEY=${{ secrets.ONESIGNAL_API_KEY }} \
             --set-env-vars GROQ_API_KEY=${{ secrets.GROQ_API_KEY }} \

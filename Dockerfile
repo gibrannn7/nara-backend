@@ -23,4 +23,4 @@ EXPOSE 8080
 
 # Perintah untuk menjalankan aplikasi
 # Gunakan format Shell (tanpa kurung siku) agar variabel $PORT bisa terbaca oleh container
-CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}"]
