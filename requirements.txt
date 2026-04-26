@@ -1,0 +1,8 @@
+fastapi>=0.100.0
+uvicorn>=0.23.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+google-cloud-firestore>=2.11.0
+google-cloud-tasks>=2.14.0
+httpx>=0.25.0
+mixpanel>=4.10.0
