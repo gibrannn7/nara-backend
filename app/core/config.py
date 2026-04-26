@@ -1,3 +1,4 @@
+import os
 from typing import Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -12,12 +13,11 @@ class Settings(BaseSettings):
     ONESIGNAL_APP_ID: str
     ONESIGNAL_API_KEY: str
     GROQ_API_KEY: str
+    NARA_ADMIN_API_KEY: str 
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 settings = Settings()
 
-# Hanya set env var jika filenya benar-benar ada (untuk lokal)
-import os
 if settings.GOOGLE_APPLICATION_CREDENTIALS and os.path.exists(settings.GOOGLE_APPLICATION_CREDENTIALS):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = settings.GOOGLE_APPLICATION_CREDENTIALS
